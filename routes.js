@@ -10,6 +10,7 @@ router.get("/posts", async (req, res) => {
 router.post("/posts", async (req, res) => {
   const post = new Post({
     title: req.body.title,
+    date: req.body.date,
     content: req.body.content
   });
   await post.save();
@@ -37,6 +38,10 @@ router.patch("/posts/:id", async (req, res) => {
     if (req.body.content) {
       post.content = req.body.content;
     }
+    if (req.body.date) {
+      post.date = req.body.date;
+    }
+
 
     await post.save();
     res.send(post);
